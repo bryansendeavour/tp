@@ -12,6 +12,9 @@ import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.UniqueContactList;
 import seedu.address.model.person.Event;
 
+/**
+ * Links a contact to an event
+ */
 public class LinkContactCommand extends Command {
 
     public static final String COMMAND_WORD = "linkcontact";
@@ -27,6 +30,10 @@ public class LinkContactCommand extends Command {
     private final Index eventIndex;
     private final String addContact;
 
+    /**
+     * Creates a LinkContactCommand to link the specified {@code Contact} to event
+     * specified by the {@code Index}.
+     */
     public LinkContactCommand(Index index, String contact) {
         requireNonNull(index);
         requireNonNull(contact);
@@ -35,7 +42,7 @@ public class LinkContactCommand extends Command {
     }
 
     @Override
-    public CommandResult execute (Model model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Event> lastShownList = model.getFilteredPersonList();
         List<Contact> contactList = model.getContactList().getContactList();
@@ -52,6 +59,7 @@ public class LinkContactCommand extends Command {
         } catch (NullPointerException iobe) {
             throw new CommandException(Messages.MESSAGE_CONTACT_NOT_FOUND);
         }
+
         return new CommandResult(String.format(MESSAGE_LINK_CONTACT_SUCCESS,toAdd));
     }
 

@@ -6,8 +6,16 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.LinkContactCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new LinkContactCommand object.
+ */
 public class LinkContactCommandParser implements Parser<LinkContactCommand> {
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the LinkContactCommand
+     * and returns an LinkContactCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public LinkContactCommand parse(String args) throws ParseException {
         try {
             String[] argarr = args.trim().split(" ");

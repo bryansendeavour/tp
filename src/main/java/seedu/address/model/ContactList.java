@@ -18,8 +18,6 @@ public class ContactList implements ReadOnlyContactList {
 
     public final UniqueContactList contacts;
 
-    public static ContactList contactList;
-
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -34,7 +32,7 @@ public class ContactList implements ReadOnlyContactList {
     }
 
     public ContactList() {
-        contactList = this;
+
     }
 
     /**

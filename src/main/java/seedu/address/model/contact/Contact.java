@@ -84,6 +84,9 @@ public class Contact {
         return builder.toString();
     }
 
+    /**
+     * Formats the string needed to save in Json file
+     */
     public String toCardString() {
         try {
             return name.fullName + " HP:" + phone.value;

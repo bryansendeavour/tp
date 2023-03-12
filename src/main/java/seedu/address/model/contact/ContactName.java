@@ -18,7 +18,7 @@ public class ContactName {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public String fullName;
+    public final String fullName;
 
     /**
      * Constructs a {@code Name}.
