@@ -9,8 +9,8 @@ import java.util.Objects;
  */
 public class Contact {
 
-    private final ContactName name;
-    private final ContactPhone phone;
+    private ContactName name;
+    private ContactPhone phone;
 
     /**
      * Every field must be present and not null.
@@ -20,6 +20,8 @@ public class Contact {
         this.name = name;
         this.phone = phone;
     }
+
+    public Contact() {};
 
     public ContactName getName() {
         return name;
@@ -39,8 +41,13 @@ public class Contact {
         }
 
         return otherContact != null
-                && otherContact.getName().equals(getName());
+                && otherContact.getPhone().equals(getPhone());
     }
+
+    public boolean isNull() {
+        return this.name == null;
+    }
+
 
     /**
      * Returns true if both persons have the same identity and data fields.
@@ -75,6 +82,14 @@ public class Contact {
                 .append(getPhone());
 
         return builder.toString();
+    }
+
+    public String toCardString() {
+        try {
+            return name.fullName + " HP:" + phone.value;
+        } catch (NullPointerException npe) {
+            return " ";
+        }
     }
 
 }

@@ -10,6 +10,13 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.ContactList;
+import seedu.address.model.ModelManager;
+import seedu.address.model.ReadOnlyContactList;
+import seedu.address.model.contact.Contact;
+import seedu.address.model.contact.ContactName;
+import seedu.address.model.contact.ContactPhone;
+import seedu.address.model.contact.UniqueContactList;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Event;
 import seedu.address.model.person.Name;
@@ -30,6 +37,7 @@ class JsonAdaptedPerson {
     private final String startTime;
     private final String endTime;
     private final String mark;
+    private final String contact;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -40,7 +48,7 @@ class JsonAdaptedPerson {
             @JsonProperty("address") String address,
             @JsonProperty("startTiming") String startTime,
             @JsonProperty("endTiming") String endTiming,
-            @JsonProperty("mark") String mark,
+            @JsonProperty("mark") String mark, @JsonProperty("contact") String contact,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.rate = rate;
@@ -48,6 +56,7 @@ class JsonAdaptedPerson {
         this.startTime = startTime;
         this.endTime = endTiming;
         this.mark = mark;
+        this.contact = contact;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -63,6 +72,7 @@ class JsonAdaptedPerson {
         startTime = source.getTiming().startTime;
         endTime = source.getTiming().endTime;
         mark = source.getMark().toString();
+        contact = source.getContact().toCardString();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -115,6 +125,11 @@ class JsonAdaptedPerson {
         Event event = new Event(modelName, modelRate, modelAddress, modelTiming, modelTags);
         if (mark.equals("[X]")) {
             event.mark();
+        }
+        if (!contact.equals(" ")) {
+            String[] args = contact.split("HP:");
+            Contact contact = new Contact(new ContactName(args[0]), new ContactPhone(args[1]));
+            event.linkContact(contact);
         }
         return event;
     }
