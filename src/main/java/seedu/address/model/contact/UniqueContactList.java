@@ -25,8 +25,8 @@ import seedu.address.model.contact.exceptions.DuplicateContactException;
  */
 public class UniqueContactList implements Iterable<Contact> {
 
-    public static HashMap<String, Integer> numberMap = new HashMap<>();
-    public static int count = 0;
+    private static HashMap<String, Integer> numberMap = new HashMap<>();
+    private static int count = 0;
     private final ObservableList<Contact> internalList = FXCollections.observableArrayList();
     private final ObservableList<Contact> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
@@ -40,6 +40,13 @@ public class UniqueContactList implements Iterable<Contact> {
         return internalList.stream().anyMatch(toCheck::isSameContact);
     }
 
+    public static HashMap<String, Integer> getNumberMap() {
+        return numberMap;
+    }
+
+    public static int getCount() {
+        return count;
+    }
     /**
      * Adds a Contact to the list.
      * The Contact must not already exist in the list.

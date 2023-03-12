@@ -124,7 +124,7 @@ class JsonAdaptedPerson {
         }
         if (!contact.equals(" ")) {
             String[] args = contact.split("HP:");
-            Contact contact = new Contact(new ContactName(args[0]), new ContactPhone(args[1]));
+            Contact contact = new Contact(new ContactName(args[0].trim()), new ContactPhone(args[1].trim()));
             event.linkContact(contact);
         }
         return event;

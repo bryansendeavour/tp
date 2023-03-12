@@ -54,13 +54,13 @@ public class LinkContactCommand extends Command {
         Event toAdd = lastShownList.get(eventIndex.getZeroBased());
 
         try {
-            Contact contactToAdd = contactList.get(UniqueContactList.numberMap.get(addContact));
+            Contact contactToAdd = contactList.get(UniqueContactList.getNumberMap().get(addContact));
             model.linkContact(toAdd, contactToAdd);
         } catch (NullPointerException iobe) {
             throw new CommandException(Messages.MESSAGE_CONTACT_NOT_FOUND);
         }
 
-        return new CommandResult(String.format(MESSAGE_LINK_CONTACT_SUCCESS,toAdd));
+        return new CommandResult(String.format(MESSAGE_LINK_CONTACT_SUCCESS, toAdd));
     }
 
     @Override
