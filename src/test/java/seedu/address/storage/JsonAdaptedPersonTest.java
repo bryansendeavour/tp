@@ -31,6 +31,7 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_START_TIME = BENSON.getTiming().startTime;
     private static final String VALID_END_TIME = BENSON.getTiming().endTime;
     private static final String VALID_MARK = BENSON.getMark().toString();
+    private static final Sting VALID_CONTACT =
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
@@ -46,7 +47,8 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(
                         INVALID_NAME, VALID_RATE, VALID_ADDRESS,
-                        VALID_START_TIME, VALID_END_TIME, VALID_MARK, VALID_TAGS);
+                        VALID_START_TIME, VALID_END_TIME, VALID_MARK,
+                        VALID_CONTACT, VALID_TAGS);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
